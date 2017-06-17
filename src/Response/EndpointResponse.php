@@ -43,7 +43,7 @@ class EndpointResponse extends Response
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function isOk()
     {

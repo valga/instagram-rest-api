@@ -22,7 +22,7 @@ class Response implements ResponseInterface
     private $fullResponse;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getClient()
     {
@@ -30,7 +30,7 @@ class Response implements ResponseInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getHttpResponse()
     {
@@ -38,7 +38,7 @@ class Response implements ResponseInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getFullResponse()
     {
@@ -46,7 +46,7 @@ class Response implements ResponseInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function __construct(Client $client, HttpResponseInterface $httpResponse, $fullResponse = null)
     {
@@ -56,7 +56,7 @@ class Response implements ResponseInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function isOk()
     {

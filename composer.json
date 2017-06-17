@@ -20,6 +20,11 @@
             "InstagramRestApi\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "InstagramRestApi\\CodeStyle\\": "cs/"
+        }
+    },
     "require": {
         "php": ">=5.6",
         "guzzlehttp/guzzle": "^6.2",
@@ -27,6 +32,7 @@
         "psr/log": "^1.0"
     },
     "require-dev": {
-        "monolog/monolog": "^1.22"
+        "monolog/monolog": "^1.22",
+        "friendsofphp/php-cs-fixer": "^2.3"
     }
 }

@@ -33,7 +33,7 @@ class AccessTokenResponse extends Response
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function isOk()
     {
