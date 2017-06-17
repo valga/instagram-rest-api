@@ -30,8 +30,9 @@ class EndpointException extends RequestException
      */
     public function __construct($message = '', $code = 0, ResponseInterface $response = null, \Exception $previous = null)
     {
+        $httpResponse = $response !== null ? $response->getHttpResponse() : null;
         $this->response = $response;
-        parent::__construct($message, $code, $previous);
+        parent::__construct($message, $code, $httpResponse, $previous);
     }
 
     /**

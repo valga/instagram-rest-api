@@ -142,12 +142,12 @@ class Request
         if (($errorCode = json_last_error()) !== JSON_ERROR_NONE) {
             $message = sprintf('Failed to decode JSON (%d): %s.', $errorCode, json_last_error_msg());
             $this->getClient()->getLogger()->error($message, [$responseBody]);
-            throw new InvalidResponseException($message, $httpResponse);
+            throw new InvalidResponseException($message, $errorCode, $httpResponse);
         }
         if (!is_object($response)) {
             $message = 'Response is not an object.';
             $this->getClient()->getLogger()->error($message, [$responseBody]);
-            throw new InvalidResponseException($message, $httpResponse);
+            throw new InvalidResponseException($message, 0, $httpResponse);
         }
 
         return $response;

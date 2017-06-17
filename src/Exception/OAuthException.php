@@ -13,8 +13,10 @@ class OAuthException extends EndpointException
             throw new static($request['error_description']);
         } elseif (isset($request['error_reason'])) {
             throw new static($request['error_reason']);
-        } else {
+        } elseif (isset($request['error'])) {
             throw new static($request['error']);
+        } else {
+            throw new static('Invalid request data.');
         }
     }
 
