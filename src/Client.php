@@ -21,7 +21,6 @@ use Psr\Log\NullLogger;
  *
  * @see https://www.instagram.com/developer/ For Instagram API documentation.
  * @see https://www.instagram.com/developer/clients/manage/ For your API Clients management.
- * @see https://seldaek.github.io/monolog/ For logger configuration.
  * @see http://docs.guzzlephp.org/en/stable/ For Guzzle's client configuration.
  */
 class Client

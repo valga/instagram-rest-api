@@ -169,7 +169,7 @@ printf('%d/%d', $result->getRateLimitRemaining(), $result->getRateLimit());
 
 ### Logging and proxy
 
-We use `Logger::INFO` level to log all successful requests with their responses, and `Logger::ERROR` for failed requests (with their responses, if avaiable).
+We use `info` level to log all successful requests with their responses, and `error` level for failed requests (with their responses, if avaiable).
 
 ```php
 $logger = new Monolog\Logger('instagram');
