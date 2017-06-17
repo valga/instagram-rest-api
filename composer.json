@@ -22,7 +22,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "InstagramRestApi\\CodeStyle\\": "cs/"
+            "InstagramRestApi\\CodeStyle\\": "cs/",
+            "InstagramRestApi\\Tests\\": "tests/"
         }
     },
     "require": {
@@ -33,6 +34,7 @@
     },
     "require-dev": {
         "monolog/monolog": "^1.22",
-        "friendsofphp/php-cs-fixer": "^2.3"
+        "friendsofphp/php-cs-fixer": "^2.3",
+        "phpunit/phpunit": "^6.2"
     }
 }
