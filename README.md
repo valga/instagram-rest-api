@@ -32,10 +32,15 @@ try {
 
 if ($result === null) {
     header('Location: '.$apiClient->getLoginUrl());
-    die();
 } else {
     printf('Your access token is: %s', $result->getAccessToken());
 }
+```
+
+### Changing access token on the fly
+
+```php
+$apiClient->getAuth()->setAccessToken($newAccessToken);
 ```
 
 ### Obtaining data from API endpoints
@@ -78,7 +83,7 @@ $relationships->follow($userId);
 $relationships->unfollow($userId);
 $relationships->getStatus($userId);
 $relationships->getFollowing();
-$relationships->getFollowing();
+$relationships->getFollowers();
 $relationships->getPendingUsers();
 
 $subscriptions = $apiClient->subscriptions;
@@ -169,7 +174,7 @@ printf('%d/%d', $result->getRateLimitRemaining(), $result->getRateLimit());
 
 ### Logging and proxy
 
-We use `info` level to log all successful requests with their responses, and `error` level for failed requests (with their responses, if avaiable).
+We use `info` level to log all successful requests with their responses, and `error` level for failed requests (with their responses, if available).
 
 ```php
 $logger = new Monolog\Logger('instagram');

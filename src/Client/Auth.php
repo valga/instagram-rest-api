@@ -92,7 +92,7 @@ class Auth
     }
 
     /**
-     * Returns enfoce signed requests flag.
+     * Returns enforce signed requests flag.
      *
      * @return bool
      */
