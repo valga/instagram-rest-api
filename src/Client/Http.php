@@ -2,7 +2,8 @@
 
 namespace InstagramRestApi\Client;
 
-use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\Client as HttpClient;
+use GuzzleHttp\ClientInterface as HttpClientInterface;
 use InstagramRestApi\Client as ApiClient;
 use InstagramRestApi\Exception\NetworkException;
 use Psr\Http\Message\ResponseInterface as HttpResponseInterface;
@@ -15,9 +16,9 @@ use Psr\Http\Message\ResponseInterface as HttpResponseInterface;
 class Http
 {
     /**
-     * @var GuzzleClient
+     * @var HttpClientInterface
      */
-    private $guzzleClient;
+    private $httpClient;
 
     /**
      * @var ApiClient
@@ -27,30 +28,30 @@ class Http
     /**
      * Constructor.
      *
-     * @param ApiClient         $apiClient
-     * @param GuzzleClient|null $guzzleClient
+     * @param ApiClient                $apiClient
+     * @param HttpClientInterface|null $guzzleClient
      */
-    public function __construct(ApiClient $apiClient, GuzzleClient $guzzleClient = null)
+    public function __construct(ApiClient $apiClient, HttpClientInterface $guzzleClient = null)
     {
         $this->apiClient = $apiClient;
 
         if ($guzzleClient === null) {
-            $this->guzzleClient = new GuzzleClient([
+            $this->httpClient = new HttpClient([
                 'allow_redirects' => false,
                 'connect_timeout' => 5.0,
                 'timeout'         => 10.0,
             ]);
         } else {
-            $this->guzzleClient = $guzzleClient;
+            $this->httpClient = $guzzleClient;
         }
     }
 
     /**
-     * @return GuzzleClient
+     * @return HttpClientInterface
      */
-    protected function getGuzzleClient()
+    protected function getHttpClient()
     {
-        return $this->guzzleClient;
+        return $this->httpClient;
     }
 
     /**
@@ -89,7 +90,7 @@ class Http
             $options['body'] = $body;
         }
         try {
-            $response = $this->getGuzzleClient()->request($method, $url, $options);
+            $response = $this->getHttpClient()->request($method, $url, $options);
             // Log successful request with its response.
             $message = sprintf('%s %s %d %s', $method, $url, $response->getStatusCode(), $response->getReasonPhrase());
             $context = [

@@ -2,7 +2,7 @@
 
 namespace InstagramRestApi;
 
-use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\ClientInterface as HttpClientInterface;
 use InstagramRestApi\Client\Auth;
 use InstagramRestApi\Client\Http as HttpClient;
 use JsonMapper;
@@ -240,19 +240,20 @@ class Client
     /**
      * Constructor.
      *
-     * @param array                $config An associative array with following keys:
-     *                                     "clientId" (required) - Client ID.
-     *                                     "clientSecret" (required) - Client Secret.
-     *                                     "accessToken" (optional) - OAuth token.
-     *                                     "enforceSignedRequests" (optional, false by default) - Whether to use signed requests.
-     * @param null|LoggerInterface $logger Custom logger instance.
-     * @param null|GuzzleClient    $guzzle Custom Guzzle client.
+     * @param array                    $config     An associative array with following keys:
+     *                                             "clientId" (required) - Client ID.
+     *                                             "clientSecret" (required) - Client Secret.
+     *                                             "accessToken" (optional) - OAuth token.
+     *                                             "enforceSignedRequests" (optional, false by default)
+     *                                             - Whether to use signed requests.
+     * @param null|LoggerInterface     $logger     Custom logger instance.
+     * @param null|HttpClientInterface $httpClient Custom Guzzle client.
      *
      * @throws \InvalidArgumentException
      *
      * @see https://www.instagram.com/developer/clients/manage/
      */
-    public function __construct(array $config, LoggerInterface $logger = null, GuzzleClient $guzzle = null)
+    public function __construct(array $config, LoggerInterface $logger = null, HttpClientInterface $httpClient = null)
     {
         $this->auth = new Auth($config);
 
@@ -262,7 +263,7 @@ class Client
             $this->logger = new NullLogger();
         }
 
-        $this->httpClient = new HttpClient($this, $guzzle);
+        $this->httpClient = new HttpClient($this, $httpClient);
 
         $this->jsonMapper = new JsonMapper();
         $this->jsonMapper->bStrictNullTypes = false;
